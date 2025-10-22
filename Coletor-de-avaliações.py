@@ -4,7 +4,7 @@ import datetime
         
         # --- Configuração ---
         # Troque pelo ID do app que você quer analisar
-APP_ID = 'br.com.spotify.music' 
+APP_ID = 'com.spotify.music' 
 QUANTIDADE = 100
         # --------------------
         

@@ -10,16 +10,20 @@ from cryptography.fernet import Fernet
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from googleapiclient.http import MediaIoBaseDownload
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- CONFIGURAÇÕES ---
 # 1. Google Drive: Caminho para o JSON da sua Service Account
-GOOGLE_SERVICE_ACCOUNT_FILE = 'credentials.json'
+GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv('GOOGLE_SERVICE_ACCOUNT_FILE', 'credentials.json')
 # 2. Filebase (S3): Suas chaves de acesso
-FILEBASE_ACCESS_KEY = 'SUA_KEY_AQUI'
-FILEBASE_SECRET_KEY = 'SEU_SECRET_AQUI'
-FILEBASE_BUCKET_NAME = 'nome-do-seu-bucket'
+FILEBASE_ACCESS_KEY = os.getenv('FILEBASE_ACCESS_KEY', 'SUA_KEY_AQUI')
+FILEBASE_SECRET_KEY = os.getenv('FILEBASE_SECRET_KEY', 'SEU_SECRET_AQUI')
+FILEBASE_BUCKET_NAME = os.getenv('FILEBASE_BUCKET_NAME', 'nome-do-seu-bucket')
 # 3. Criptografia: Gere uma com Fernet.generate_key() e cole aqui
-ENCRYPTION_KEY = b'SUA_CHAVE_FERNET_GERADA_AQUI='
+encryption_key_str = os.getenv('ENCRYPTION_KEY', 'SUA_CHAVE_FERNET_GERADA_AQUI=')
+ENCRYPTION_KEY = encryption_key_str.encode('utf-8')
 
 # Configuração do LOG
 logging.basicConfig(

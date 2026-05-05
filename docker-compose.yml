@@ -2,7 +2,10 @@ version: '3.8'
 
 services:
   sync-worker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sync-secure-cloud:latest
     container_name: sync_secure_cloud
     restart: unless-stopped
     env_file:

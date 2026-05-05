@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  sync-worker:
+    build: .
+    container_name: sync_secure_cloud
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./credentials.json:/app/credentials.json:ro
+      - ./sync_blockchain.log:/app/sync_blockchain.log
